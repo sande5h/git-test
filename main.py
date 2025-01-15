@@ -96,7 +96,7 @@ def check(symbol):
 
 def close_position(symbol , side):
     qty = get_qty(symbol)
-    # place_order(symbol, side, qty)
+    place_order(symbol, side, qty)
     set_position(symbol, "HOLD")
 
 def place_order(symbol, side, qty):
@@ -141,7 +141,7 @@ def place_order(symbol, side, qty):
 
 def open_position(symbol , side):
     qty = update_quantity(symbol)
-    # place_order(symbol, side, qty)
+    place_order(symbol, side, qty)
     set_position(symbol, side)
 
 def get_candles(symbol, interval="5m", limit=1440):
