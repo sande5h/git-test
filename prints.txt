@@ -1,9 +1,9 @@
-   Symbol: BTC-USDT, EMA Diff: -3.97, Position: HOLD , ema_cross: 93232.86
-Symbol: ETH-USDT, EMA Diff: 0.18, Position: HOLD , ema_cross: 3208.0068460610914
+Symbol: BTC-USDT, EMA Diff: -4.01, Position: HOLD , ema_cross: 93232.86
+Symbol: ETH-USDT, EMA Diff: 0.12, Position: HOLD , ema_cross: 3208.0068460610914
 Symbol: BNB-USDT, EMA Diff: 1.23, Position: HOLD , ema_cross: 699.0
-Symbol: ADA-USDT, EMA Diff: -0.62, Position: HOLD , ema_cross: 0.9922
-Symbol: XRP-USDT, EMA Diff: -11.72, Position: SELL , ema_cross: 2.472
-Symbol: AVAX-USDT, EMA Diff: -7.48, Position: HOLD , ema_cross: 34.288
-Symbol: SOL-USDT, EMA Diff: 0.2, Position: HOLD , ema_cross: 186.8764420169257
-Symbol: SUI-USDT, EMA Diff: 2.03, Position: HOLD , ema_cross: 4.56
-Symbol: TRX-USDT, EMA Diff: -0.35, Position: HOLD , ema_cross: 0.2226972346118179
+Symbol: ADA-USDT, EMA Diff: -1.42, Position: HOLD , ema_cross: 0.9922
+Symbol: XRP-USDT, EMA Diff: -12.32, Position: SELL , ema_cross: 2.472
+Symbol: AVAX-USDT, EMA Diff: -8.29, Position: HOLD , ema_cross: 34.288
+Symbol: SOL-USDT, EMA Diff: 0.01, Position: HOLD , ema_cross: 186.8764420169257
+Symbol: SUI-USDT, EMA Diff: 1.11, Position: HOLD , ema_cross: 4.56
+Symbol: TRX-USDT, EMA Diff: -0.6, Position: HOLD , ema_cross: 0.2226972346118179
