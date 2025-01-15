@@ -177,7 +177,6 @@ def get_candles(symbol, interval="5m", limit=1440):
 def main():
 
     symbols = ['BTC-USDT', 'ETH-USDT', 'BNB-USDT', 'ADA-USDT', 'XRP-USDT', 'AVAX-USDT', 'SOL-USDT', 'SUI-USDT', 'TRX-USDT']
-    prints = []
     for symbol in symbols:
         get_candles(symbol)
         check(symbol)
@@ -186,11 +185,7 @@ def main():
             diff = round(((ema_cross - close) / ema_cross) * 100 , 2)
         else:
             diff = 0
-        
-        prints.append(f"Symbol: {symbol}, EMA Diff: {diff}, Position: {position} , ema_cross: {ema_cross}")
-        
-    with open('prints.txt', 'w') as f:
-        f.write("\n".join(prints))
+        print(f"Symbol: {symbol}, Close: {close}, EMA: {ema}, EMA Cross: {ema_cross}, EMA Diff: {ema_diff}, Diff: {diff}%")
 
 if __name__ == '__main__':
     while True:
