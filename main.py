@@ -168,7 +168,7 @@ def get_candles(symbol, interval="5m", limit=1440):
     high = float(df['high'].iloc[-1])
     low = float(df['low'].iloc[-1])
 
-    # print(f"Symbol: {symbol}, Close: {close}, High: {high}, Low: {low}, EMA: {ema}")
+    print(f"Symbol: {symbol}, Close: {close}, High: {high}, Low: {low}, EMA: {ema}")
     set_candle(symbol, close, high, low, round(ema, 4))
 
     return True
