@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-API_URL = "https://open-api-vst.bingx.com"
+API_URL = "https://open-api.bingx.com"
 API_KEY = os.getenv("API_KEY")
 API_SECRET = os.getenv("API_SECRET")
 

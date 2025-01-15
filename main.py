@@ -96,7 +96,7 @@ def check(symbol):
 
 def close_position(symbol , side):
     qty = get_qty(symbol)
-    place_order(symbol, side, qty)
+    # place_order(symbol, side, qty)
     set_position(symbol, "HOLD")
 
 def place_order(symbol, side, qty):
@@ -141,7 +141,7 @@ def place_order(symbol, side, qty):
 
 def open_position(symbol , side):
     qty = update_quantity(symbol)
-    place_order(symbol, side, qty)
+    # place_order(symbol, side, qty)
     set_position(symbol, side)
 
 def get_candles(symbol, interval="5m", limit=1440):
@@ -161,13 +161,14 @@ def get_candles(symbol, interval="5m", limit=1440):
     df = df[::-1]
 
 
-    ema = EMAIndicator(EMAIndicator(df['close'], window=200).ema_indicator(), window=200).ema_indicator()
+    ema = EMAIndicator(EMAIndicator(df['close'], window=100).ema_indicator(), window=100).ema_indicator()
 
     ema = float(ema.iloc[-1])
     close = float(df['close'].iloc[-1])
     high = float(df['high'].iloc[-1])
     low = float(df['low'].iloc[-1])
 
+    # print(f"Symbol: {symbol}, Close: {close}, High: {high}, Low: {low}, EMA: {ema}")
     set_candle(symbol, close, high, low, ema)
 
     return True
@@ -192,4 +193,7 @@ def main():
         f.write("\n".join(prints))
 
 if __name__ == '__main__':
-    main()
+    while True:
+        main()
+        time.sleep(300)
+
