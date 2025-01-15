@@ -185,7 +185,7 @@ def main():
             diff = round(((ema_cross - close) / ema_cross) * 100 , 2)
         else:
             diff = 0
-        print(f"Symbol: {symbol}, Close: {close}, EMA: {ema}, EMA Cross: {ema_cross}, EMA Diff: {ema_diff}, Diff: {diff}%")
+        print(f"Symbol: {symbol}, EMA Cross: {ema_cross}, Diff: {diff}%")
 
 if __name__ == '__main__':
     while True:
