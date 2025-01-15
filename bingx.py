@@ -4,8 +4,8 @@ import hmac
 from hashlib import sha256
 import requests
 import time
-# from dotenv import load_dotenv
-# load_dotenv()
+from dotenv import load_dotenv
+load_dotenv()
 
 
 API_URL = "https://open-api-vst.bingx.com"
