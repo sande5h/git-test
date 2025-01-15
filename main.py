@@ -84,14 +84,14 @@ def check(symbol):
             if position == "SELL":
                 close_position(symbol,"BUY")
                 open_position(symbol, "BUY")
-            elif position != "BUY":
+            elif position == "HOLD":
                 open_position(symbol, "BUY")
 
         elif high > ema_cross * (1 + ema_diff):
             if position == "BUY":
                 close_position(symbol , "SELL")
                 open_position(symbol, "SELL")
-            elif position != "SELL":
+            elif position == "HOLD":
                 open_position(symbol, "SELL")
 
 def close_position(symbol , side):
@@ -155,30 +155,26 @@ def get_candles(symbol, interval="5m", limit=1440):
     }
     data = call_bingx(payload, path, method, paramsMap)
     data = json.loads(data)
-    # print(data)
-    # DataFrame for the candles
     df = pd.DataFrame(data['data'], columns=['time', 'open', 'high', 'low', 'close', 'volume'])
     df['time'] = pd.to_datetime(df['time'], unit='ms', utc=True).dt.strftime('%Y-%m-%d %H:%M')
     df.set_index('time', inplace=True)
     df = df[::-1]
 
-    # EMA200 of EMA200 indicator
+
     ema = EMAIndicator(EMAIndicator(df['close'], window=200).ema_indicator(), window=200).ema_indicator()
-    # df = df[:-1]
 
     ema = float(ema.iloc[-1])
     close = float(df['close'].iloc[-1])
     high = float(df['high'].iloc[-1])
     low = float(df['low'].iloc[-1])
 
-    # print(close, high, low, ema)
     set_candle(symbol, close, high, low, ema)
 
     return True
 
 
 def main():
-    # symbols = ["BTC-USDT"]
+
     symbols = ['BTC-USDT', 'ETH-USDT', 'BNB-USDT', 'ADA-USDT', 'XRP-USDT', 'AVAX-USDT', 'SOL-USDT', 'SUI-USDT', 'TRX-USDT']
     prints = []
     for symbol in symbols:
