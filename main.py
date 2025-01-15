@@ -192,6 +192,7 @@ if __name__ == '__main__':
         try:
             main()
             time.sleep(60)
+            print('------------------------------------------------------------')
         except Exception as e:
             print(f"Error: {e}")
             time.sleep(60)
