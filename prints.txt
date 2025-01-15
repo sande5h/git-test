@@ -1,0 +1,9 @@
+Symbol: BTC-USDT, EMA Diff: -3.18, Position: HOLD
+Symbol: ETH-USDT, EMA Diff: 0.0, Position: HOLD
+Symbol: BNB-USDT, EMA Diff: 0.48, Position: HOLD
+Symbol: ADA-USDT, EMA Diff: 0.35, Position: HOLD
+Symbol: XRP-USDT, EMA Diff: -7.61, Position: SELL
+Symbol: AVAX-USDT, EMA Diff: -5.57, Position: HOLD
+Symbol: SOL-USDT, EMA Diff: 0.0, Position: HOLD
+Symbol: SUI-USDT, EMA Diff: -0.56, Position: HOLD
+Symbol: TRX-USDT, EMA Diff: 0.0, Position: HOLD
