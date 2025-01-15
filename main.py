@@ -189,6 +189,10 @@ def main():
 
 if __name__ == '__main__':
     while True:
-        main()
-        time.sleep(300)
+        try:
+            main()
+            time.sleep(300)
+        except Exception as e:
+            print(f"Error: {e}")
+            time.sleep(300)
 
