@@ -178,22 +178,16 @@ def main():
     symbols = ['BTC-USDT', 'ETH-USDT', 'BNB-USDT', 'ADA-USDT', 'XRP-USDT', 'AVAX-USDT', 'SOL-USDT', 'SUI-USDT', 'TRX-USDT']
     prints = []
     for symbol in symbols:
-        try:
-
-            get_candles(symbol)
-            check(symbol)
-            close, high, low, ema, ema_cross, ema_diff, min_qty, quantity, position = get_data(symbol)
-            if ema_cross != 0:
-                diff = round(((ema_cross - close) / ema_cross) * 100 , 2)
-            else:
-                diff = 0
-            prints.append(f"Symbol: {symbol}, EMA Diff: {diff}, Position: {position} , ema_cross: {ema_cross}")
-            print(f"Symbol: {symbol}, EMA Diff: {diff}, Position: {position}")
-            update_quantity(symbol)
-            # open_position(symbol, "BUY")
-        except FileNotFoundError:
-            # init_data()
-            pass
+        get_candles(symbol)
+        check(symbol)
+        close, high, low, ema, ema_cross, ema_diff, min_qty, quantity, position = get_data(symbol)
+        if ema_cross != 0:
+            diff = round(((ema_cross - close) / ema_cross) * 100 , 2)
+        else:
+            diff = 0
+        
+        prints.append(f"Symbol: {symbol}, EMA Diff: {diff}, Position: {position} , ema_cross: {ema_cross}")
+        
     with open('prints.txt', 'w') as f:
         f.write("\n".join(prints))
 

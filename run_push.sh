@@ -9,7 +9,7 @@ git pull origin main
 
 # Activate the virtual environment (update the path to your virtual environment)
 echo "$(date): Activating virtual environment..." >> logfile.log
-source /.venv/bin/activate
+source ./venv/bin/activate
 
 # Install dependencies from requirements.txt
 echo "$(date): Installing dependencies from requirements.txt..." >> logfile.log
