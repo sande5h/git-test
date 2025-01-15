@@ -191,8 +191,8 @@ if __name__ == '__main__':
     while True:
         try:
             main()
-            time.sleep(300)
+            time.sleep(60)
         except Exception as e:
             print(f"Error: {e}")
-            time.sleep(300)
+            time.sleep(60)
 
