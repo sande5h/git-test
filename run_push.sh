@@ -1,5 +1,5 @@
 #!/bin/bash
-cd /home/admin/my_new_project
+cd /home/admin/git-test
 # Log the current timestamp to check if the script is running
 echo "$(date): Script started" >> logfile.log
 

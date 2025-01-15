@@ -198,11 +198,4 @@ def main():
         f.write("\n".join(prints))
 
 if __name__ == '__main__':
-    while True:
-        try:
-            main()
-            time.sleep(300)
-        except Exception as e:
-            print(f"Error: {e}")
-            time.sleep(300)
-            pass
+    main()
