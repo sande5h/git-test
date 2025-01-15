@@ -1,4 +1,4 @@
-Symbol: BTC-USDT, EMA Diff: -3.97, Position: HOLD , ema_cross: 93232.86
+   Symbol: BTC-USDT, EMA Diff: -3.97, Position: HOLD , ema_cross: 93232.86
 Symbol: ETH-USDT, EMA Diff: 0.18, Position: HOLD , ema_cross: 3208.0068460610914
 Symbol: BNB-USDT, EMA Diff: 1.23, Position: HOLD , ema_cross: 699.0
 Symbol: ADA-USDT, EMA Diff: -0.62, Position: HOLD , ema_cross: 0.9922
