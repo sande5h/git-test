@@ -113,6 +113,7 @@ def place_order(symbol, side, qty):
 
     try:
         #response = call_bingx(payload, path, method, paramsMap)
+        response = "Success"
         pass
     except Exception as e:
         print(f"Error placing order: {e}")
