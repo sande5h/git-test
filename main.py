@@ -208,9 +208,9 @@ def main():
         check(symbol)
         close, high, low, ema, ema_cross, ema_diff, min_qty, quantity, position = get_data(symbol)
         if ema_cross != 0:
-            diff = round(((ema_cross - close) / ema_cross) * 100 , 2)
+            diff = round(((close - ema_cross) / ema_cross) * 100 , 2)
         else:
-            diff = 0
+            diff = 0.00
         print(f"Symbol: {symbol}, EMA Cross: {ema_cross}, Diff: {diff}% , Position: {position}")
         logging.info(f"Symbol: {symbol}, EMA Cross: {ema_cross}, Diff: {diff}% , Position: {position}")
 
@@ -222,5 +222,6 @@ if __name__ == '__main__':
             print('------------------------------------------------------------')
         except Exception as e:
             print(f"Error: {e}")
+            logging.info(f"Error in main : {e}")
             time.sleep(60)
 
