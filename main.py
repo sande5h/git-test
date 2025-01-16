@@ -6,7 +6,12 @@ from ta.trend import EMAIndicator
 from decimal import Decimal
 from datetime import datetime
 import time
+import logging
+import subprocess
 
+
+logging.basicConfig(filename='log.log', level=logging.INFO, 
+                    format='%(asctime)s - %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
 
 def round_to_min_decimal_places(min_value, sent_value):
     # Convert min_value to a Decimal and retrieve the number of decimal places
@@ -78,26 +83,33 @@ def check(symbol):
             close_position(symbol, "SELL")
         else:
             pass
-
+    close , high , low , ema , ema_cross , ema_diff , min_qty , quantity , position = get_data(symbol)
     if ema_cross != 0:
         if low < ema_cross * (1 - ema_diff):
             if position == "SELL":
+                print(f"{symbol} Closing Sell and opening Buy")
                 close_position(symbol,"BUY")
                 open_position(symbol, "BUY")
             elif position == "HOLD":
+                print(f"{symbol}opening Buy")
                 open_position(symbol, "BUY")
 
         elif high > ema_cross * (1 + ema_diff):
             if position == "BUY":
+                print(f"{symbol} Closing Buy and opening Sell")
                 close_position(symbol , "SELL")
                 open_position(symbol, "SELL")
             elif position == "HOLD":
+                print(f"{symbol} opening Sell")
                 open_position(symbol, "SELL")
 
+
+
 def close_position(symbol , side):
+    set_position(symbol, "HOLD")
     qty = get_qty(symbol)
     place_order(symbol, side, qty)
-    set_position(symbol, "HOLD")
+    
 
 def place_order(symbol, side, qty):
     payload = {}
@@ -112,20 +124,13 @@ def place_order(symbol, side, qty):
     }
 
     try:
-        #response = call_bingx(payload, path, method, paramsMap)
-        response = "Success"
+        response = call_bingx(payload, path, method, paramsMap)
         pass
     except Exception as e:
         print(f"Error placing order: {e}")
+        logging.error(f"Error placing order: {e}")
         return None
     current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    try:
-        with open('trades.json', 'r') as f:
-            trades = json.load(f)
-    except FileNotFoundError:
-        trades = []
-
-
 
     trade_data = {
         'time': current_time,
@@ -135,16 +140,36 @@ def place_order(symbol, side, qty):
         'response': response
     }
 
-    trades.append(trade_data)
+    logging.info(f"Trade Data: {trade_data}")
+    git_push()
 
-    with open('trades.json', 'w') as f:
-        f.write(f"[{','.join(json.dumps(trade) for trade in trades)}]")
     return response
 
 def open_position(symbol , side):
+    set_position(symbol, side)
     qty = update_quantity(symbol)
     place_order(symbol, side, qty)
-    set_position(symbol, side)
+
+
+def git_push():
+    try:
+        # Pull latest changes from the remote
+        subprocess.run(['git', 'pull'], check=True)
+        
+        # Add all changes
+        subprocess.run(['git', 'add', '.'], check=True)
+        
+        # Commit changes with a message
+        subprocess.run(['git', 'commit', '-m', 'auto'], check=True)
+        
+        # Push changes to the remote repository
+        subprocess.run(['git', 'push'], check=True)
+        
+        print("Pulled and pushed changes to the repository successfully.")
+    except subprocess.CalledProcessError as e:
+        print(f"An error occurred: {e}")
+        logging.error(f"An error occurred in git_push : {e}")
+
 
 def get_candles(symbol, interval="5m", limit=1440):
     payload = {}
@@ -170,7 +195,6 @@ def get_candles(symbol, interval="5m", limit=1440):
     high = float(df['high'].iloc[-1])
     low = float(df['low'].iloc[-1])
 
-    # print(f"Symbol: {symbol}, Close: {close}, High: {high}, Low: {low}, EMA: {ema}")
     set_candle(symbol, close, high, low, round(ema, 4))
 
     return True
@@ -187,7 +211,8 @@ def main():
             diff = round(((ema_cross - close) / ema_cross) * 100 , 2)
         else:
             diff = 0
-        print(f"Symbol: {symbol}, EMA Cross: {ema_cross}, Diff: {diff}%")
+        print(f"Symbol: {symbol}, EMA Cross: {ema_cross}, Diff: {diff}% , Position: {position}")
+        logging.info(f"Symbol: {symbol}, EMA Cross: {ema_cross}, Diff: {diff}% , Position: {position}")
 
 if __name__ == '__main__':
     while True:
