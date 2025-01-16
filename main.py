@@ -9,8 +9,9 @@ import time
 import logging
 import subprocess
 
+date1 = datetime.now().strftime('%Y-%m-%d')
 
-logging.basicConfig(filename='log.log', level=logging.INFO, 
+logging.basicConfig(filename=f'{date1}.log', level=logging.INFO, 
                     format='%(asctime)s - %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
 
 def round_to_min_decimal_places(min_value, sent_value):
